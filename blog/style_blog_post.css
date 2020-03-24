@@ -1,0 +1,32 @@
+/* style_blog_post.css */
+body {
+ background-color: #FFFFFF;
+ color: #000000;
+}
+
+h1 {
+ /*color: #FFFF33;*/
+ text-align: center;
+ font: bold 200% fantasy;
+ /*top padding*/
+ /*sides padding and line break*/
+}
+
+p {
+ color: #000000;
+ text-align: left;
+}
+
+img {}
+
+q {
+  /*igual texto, mas menorzinho*/
+  /*dá pra fazer referencias e mouseovers?*/
+}
+
+code {
+  /*fundo cinzinha*/
+  /*fonte monospace*/
+  /*centralizado*/
+  /*padding mais pra dentro do q o paragrafo*/
+}
