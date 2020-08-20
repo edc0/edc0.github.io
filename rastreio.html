@@ -48,6 +48,14 @@
       font-family: ubuntu;
     }
 
+    span.inner {
+	color: black;
+    }
+    span.outer {
+	color: red;
+	text-decoration: line-through;
+    }
+
     </style>
 
   <body>
@@ -65,7 +73,12 @@
 	<table style="width:45%">
 		<tr>
 			<td>Próxima atualização:</td>
-			<td>estimado 17/08/2020, 21:00, CEST</td>
+			<td>
+				<span class="outer">
+					<span class="inner">estimado 17/08/2020, 21:00, CEST</span>
+				</span>
+			<br> Falha detectada no sistema. Aguarde para maiores esclarecimentos. 
+			</td>
 		</tr>
 			<td>15/08/2020, 18:30, GMT:</td>
 			<td><a href="rast4.html">Entrega em trecho com 0 emissão de CO2</a></td>
