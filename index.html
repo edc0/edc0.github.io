@@ -2,6 +2,29 @@
 <html>
   <body>
     <style>
+	.header {
+	  padding: 10px 16px;
+	  background: #555;
+	  color: #f1f1f1;
+	}
+
+	/* Page content */
+	.content {
+	  padding: 16px;
+	}
+
+	/* The sticky class is added to the header with JS when it reaches its scroll position */
+	.sticky {
+	  position: fixed;
+	  top: 0;
+	  width: 100%
+	}
+
+	/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+	.sticky + .content {
+	  padding-top: 102px;
+	}
+
     .button {
       background-color: #035afc;
       border: none;
@@ -28,18 +51,21 @@
     }
 
     </style>
+		<div class="header" id="myHeader">
+			<h2>Bienvenidos al Sitio Web de Emílio!</h2>
+        	<h4 style="font-family:roboto;font-size:8px;color:black;font-weight:lighter;padding-bottom:50px;margin:-30px;">guess what? under construction... </h4>
+		</div> 
 
-    <br> <br> <br> <br> <br> <br> <br> <br>
     <center>
-      <hr align="center" width="35%">
-      <h1 style="font-family:roboto;font-size:50px;color:#ff6700;font-weight:normal"> Emílio <strong>Dolgener Cantú</strong></h1>
-      <h3 style="font-family:roboto;font-size:30px;color:black;font-weight:bold;padding-top:10px;margin:-30x;"> Elektrotechnik Master Student</h3>
-      <h4 style="font-family:roboto;font-size:30px;color:black;font-weight:lighter;padding-bottom:50px;margin:-30px;">at the Technische Universität Berlin </h4>
-      <hr align="center" width="35%">
-      <br>
-      <a href="contact.html" class="button">Contact</a>
-      <a href="index.html" class="button">About</a>
-      <a href="http://instagram.com/emiliocan" class="button">Social media</a>
+        <hr align="center" width="35%">
+        <h1 style="font-family:roboto;font-size:50px;color:#ff6700;font-weight:normal"> Emílio <strong>Dolgener Cantú</strong></h1>
+        <h3 style="font-family:roboto;font-size:30px;color:black;font-weight:bold;padding-top:10px;margin:-30x;"> Elektrotechnik Master Student</h3>
+        <h4 style="font-family:roboto;font-size:30px;color:black;font-weight:lighter;padding-bottom:50px;margin:-30px;">at the Technische Universität Berlin </h4>
+        <hr align="center" width="35%">
+        <br>
+        <a href="contact.html" class="button">Contact</a>
+        <a href="index.html" class="button">About</a>
+        <a href="http://instagram.com/emiliocan" class="button">Social media</a>
     </center>
   </body>
 </html>
