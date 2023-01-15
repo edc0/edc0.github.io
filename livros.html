@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.header {
+				padding: 10px 16px;
+				background: #ffffff;
+				color: #ffffff; /* no idea what color is this */
+			}
+
+			/* Page content */
+
+			.top-container {
+				padding: 30px
+			}
+
+			.content {
+				padding: 16px;
+				max-width: 500px;
+				margin: auto;
+			}
+
+			/* The sticky class is added to the header with JS when it reaches its scroll position */
+			.sticky {
+				position: fixed;
+				top: 0;
+				margin: auto;
+			}
+
+			/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+			.sticky + .content {
+				padding-top: 102px;
+				max-width: 500px;
+				margin: auto;
+				background: 555;
+			}
+
+			.button {
+				background-color: #035afc;
+				border: none;
+				color: white;
+				padding: 15px 25px;
+				text-align: center;
+				font-size: 16px;
+				cursor: pointer;
+			}
+
+
+			.button:hover {
+				background-color: black;
+			}
+
+			a:link, a:visited {
+				background-color: #035afc;
+				padding: 15px 25px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				cursor: pointer;
+				font-family: ubuntu;
+			}
+
+			div.lim {
+				width: 500px;
+				text-align: center;
+				margin: auto;
+			} 
+
+		</style>
+	</head>
+
+	<body>
+		<center>
+            <h1>Livros lidos em 2023, provavelmente em ordem:</h1>
+            <p><b>Alpinismo bisexual y otros escritos de altura</b>, Simon Elias Barasoain;</p>
+            <p><b>What I talk about when I talk about running</b>, Haruki Murakami;</p>
+		</center>
+	</body>
+
+	<script>
+		window.onscroll = function() {myFunction()};
+
+		var header =
+		document.getElementById("myHeader");
+		var sticky = header.offsetTop;
+
+		function myFunction() {
+			if (window.pageYOffset > sticky) {
+				header.classList.add("sticky");
+			} else {
+				header.classList.remove("sticky");
+			} 
+		} 
+	</script>
+
+</html>
