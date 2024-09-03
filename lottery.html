@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spreadsheet Example</title>
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+    width: 100px; /* Set a fixed width for each cell */
+    height: 30px; /* Set a fixed height for each cell */
+    text-align: center; /* Center-align text */
+  }
+  td[contenteditable=true] {
+    outline: none; /* Remove default focus outline */
+  }
+</style>
+</head>
+<body>
+<h2>Lottery Balancer</h2>
+
+<table id="spreadsheet">
+  <thead>
+    <tr>
+      <th>Team name</th>
+      <th>Adv.</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="counts">
+  <p>Amount players: <span id="PlayerCount">2</span></p>
+  <p>Amount priv. players: <span id="PrivPlayerCount">2</span></p>
+  <p>Registration imbalance: <span id="Imbalance">2</span></p>
+  <p>Lottery advantage: <span id="Advantage">2</span></p>
+</div>
+
+<script>
+  // Select all cells with contenteditable attribute
+  const cells = document.querySelectorAll('[contenteditable=true]');
+
+
+  // Add event listeners to each cell
+  cells.forEach(cell => {
+    cell.addEventListener('input', () => {
+      calculateResult();
+    });
+    cell.addEventListener('paste', handlePaste);
+  });
+
+  // Function to handle paste event
+  //function handlePaste(event) {
+  //  // Prevent the default paste behavior
+  //  event.preventDefault();
+  //  
+  //  // Get the clipboard data
+  //  const clipboardData = event.clipboardData || window.clipboardData;
+  //  
+  //  // Get only the text data from the clipboard
+  //  const textData = clipboardData.getData('text/plain');
+
+  //  // Split the text into rows and cells
+  //  const rows = textData.split('\n');
+  //  const rowsCount = rows.length;
+  //  const colsCount = rows[0].split('\t').length;
+
+  //  // Get the selected cells
+  //  const selectedCells = document.querySelectorAll('.selected');
+
+  //  // Loop through the selected cells
+  //  let rowIndex = 0;
+  //  selectedCells.forEach(cell => {
+  //    // If there is no corresponding data for this cell, skip
+  //    if (rowIndex >= rowsCount) return;
+
+  //    // Get the row data
+  //    const rowData = rows[rowIndex].split('\t');
+
+  //    // Set the content of the cell
+  //    cell.innerText = rowData[cell.cellIndex] || '';
+  //    
+  //    // Move to the next row
+  //    rowIndex++;
+  //  });
+
+  // Function to handle paste event
+  function handlePaste(event) {
+    const pasteData = event.clipboardData.getData('text');
+    const pastedRows = pasteData.split('\n');
+    const rows = document.querySelectorAll('#spreadsheet tbody tr');
+    rows.forEach((row, rowIndex) => {
+      const rowData = pastedRows[rowIndex].split('\t');
+      const inputs = row.querySelectorAll('td[contenteditable=true]');
+      inputs.forEach((input, inputIndex) => {
+        input.innerText = rowData[inputIndex] || ''; // Fill cell with pasted data or empty string if no data provided
+      });
+    });
+    calculateResult();
+    event.preventDefault(); // Prevent default paste behavior
+  }
+
+  // Function to calculate result based on user input
+  function calculateResult() {
+    const spots = 2;    // currently hardcoded
+    const team_size = 3;
+    const indiv_spots = team_size * spots;
+    const target = 0.5;
+    const rows = document.querySelectorAll('#spreadsheet tbody tr');
+
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('td[contenteditable=true]');
+      const amount_in_team = parseFloat(inputs[1].innerText) || 0;
+      amount_special += amount_in_team;
+    });
+
+    let amount_players = 0;
+    let amount_special = 0;
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('td[contenteditable=true]');
+      // compute sum of special spots and
+      const amount_in_team = parseFloat(inputs[1].innerText) || 0;
+      amount_special += amount_in_team;
+      // compute number of registered players
+      // by counting amount of teams
+      const team_name = parseFloat(inputs[0].innerText);
+      if (team_name !== '') amount_players = amount_players + team_size;
+    });
+
+    document.getElementById('PlayerCount').innerText = amount_players;
+    document.getElementById('PrivPlayerCount').innerText = amount_special;
+    document.getElementById('Imbalance').innerText = amount_special / amount_players;
+    document.getElementById('Advantage').innerText = target - (amount_special / amount_players);
+  }
+</script>
+</body>
+</html>
+
+
